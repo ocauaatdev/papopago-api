@@ -14,7 +14,7 @@ public class InstituicaoFinanceira {
     @Column(name = "nm_bank", nullable = false, length = 60)
     private String nome;
 
-    @Column(name = "cd_bacen", nullable = false, length = 3) //
+    @Column(name = "cd_bacen", nullable = false, length = 3)
     private String codigoBacen;
 
     public InstituicaoFinanceira() {
