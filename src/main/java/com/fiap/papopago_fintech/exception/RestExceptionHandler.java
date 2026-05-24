@@ -33,4 +33,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 
+    @ExceptionHandler(ContaNaoEncontradaException.class)
+    private ResponseEntity<RestErrorMessage> handleContaNaoEncontradaException(ContaNaoEncontradaException ex) {
+        RestErrorMessage errorMessage = new RestErrorMessage(ex.getMessage(), HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+
 }
