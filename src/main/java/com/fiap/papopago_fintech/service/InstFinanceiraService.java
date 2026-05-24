@@ -31,7 +31,7 @@ public class InstFinanceiraService {
         instituicaoFinanceira.setCodigoBacen(dto.codigoBacen());
         repository.save(instituicaoFinanceira);
 
-        return new ResponseInstFinDTO(instituicaoFinanceira.getId(), instituicaoFinanceira.getNome(), instituicaoFinanceira.getCodigoBacen());
+        return new ResponseInstFinDTO(instituicaoFinanceira);
 
     }
 
@@ -39,13 +39,13 @@ public class InstFinanceiraService {
         InstituicaoFinanceira instituicaoFinanceira = repository.findById(id)
                 .orElseThrow(() -> new InstFinanceiraNaoEncontradaException("Instituição financeira não encontrada"));
 
-        return new ResponseInstFinDTO(instituicaoFinanceira.getId(), instituicaoFinanceira.getNome(), instituicaoFinanceira.getCodigoBacen());
+        return new ResponseInstFinDTO(instituicaoFinanceira);
     }
 
     public List<ResponseInstFinDTO> listarInstituicoesFinanceiras() {
         List<InstituicaoFinanceira> instituicoes = repository.findAll();
         return instituicoes.stream()
-                .map(inst -> new ResponseInstFinDTO(inst.getId(), inst.getNome(), inst.getCodigoBacen()))
+                .map(inst -> new ResponseInstFinDTO(inst))
                 .toList();
     }
 
@@ -64,7 +64,7 @@ public class InstFinanceiraService {
         instituicaoFinanceira.setCodigoBacen(dto.codigoBacen());
         repository.save(instituicaoFinanceira);
 
-        return new ResponseInstFinDTO(instituicaoFinanceira.getId(), instituicaoFinanceira.getNome(), instituicaoFinanceira.getCodigoBacen());
+        return new ResponseInstFinDTO(instituicaoFinanceira);
     }
 
     public void deletarInstituicaoFinanceira(Long id) {

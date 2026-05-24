@@ -32,7 +32,7 @@ public class UsuarioService {
         try {
             dataNascimento = LocalDate.parse(dto.dataNascimento(), formatador);
         } catch (Exception e) {
-            throw new RegraNegocioException("Data de nascimento inválida. Use o formato DD-MM-YYYY.");
+            throw new RegraNegocioException("Data de nascimento inválida. Use o formato dd/MM/yyyy.");
         }
 
         Usuario usuario = new Usuario();
@@ -44,28 +44,14 @@ public class UsuarioService {
         usuario.setSenha(dto.senha());
         repository.save(usuario);
 
-        return new ResponseUsuarioDTO(
-                usuario.getId(),
-                usuario.getNome(),
-                usuario.getEmail(),
-                usuario.getDataNascimento(),
-                usuario.getNumeroTelefone(),
-                usuario.getCpf()
-        );
+        return new ResponseUsuarioDTO(usuario);
     }
 
     public ResponseUsuarioDTO obterUsuarioPorId(Long id){
         Usuario usuario = repository.findById(id)
                 .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado com o ID: " + id));
 
-        return new ResponseUsuarioDTO(
-                usuario.getId(),
-                usuario.getNome(),
-                usuario.getEmail(),
-                usuario.getDataNascimento(),
-                usuario.getNumeroTelefone(),
-                usuario.getCpf()
-        );
+        return new ResponseUsuarioDTO(usuario);
     }
 
     public ResponseUsuarioDTO atualizarUsuario(Long id, UpdateRequestUsuarioDTO dto) {
@@ -89,17 +75,9 @@ public class UsuarioService {
         usuario.setEmail(dto.email());
         usuario.setDataNascimento(dataNascimento);
         usuario.setNumeroTelefone(dto.numeroTelefone());
-        usuario.setCpf(dto.cpf());
         repository.save(usuario);
 
-        return new ResponseUsuarioDTO(
-                usuario.getId(),
-                usuario.getNome(),
-                usuario.getEmail(),
-                usuario.getDataNascimento(),
-                usuario.getNumeroTelefone(),
-                usuario.getCpf()
-        );
+        return new ResponseUsuarioDTO(usuario);
     }
 
     public void deletarUsuario(Long id) {
