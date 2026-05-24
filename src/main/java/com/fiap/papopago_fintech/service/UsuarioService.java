@@ -68,7 +68,7 @@ public class UsuarioService {
         try {
             dataNascimento = LocalDate.parse(dto.dataNascimento(), formatador);
         } catch (Exception e) {
-            throw new RegraNegocioException("Data de nascimento inválida. Use o formato DD-MM-YYYY.");
+            throw new RegraNegocioException("Data de nascimento inválida. Use o formato dd/MM/yyyy.");
         }
 
         usuario.setNome(dto.nome());

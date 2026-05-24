@@ -50,4 +50,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 
+    @ExceptionHandler(TransacaoNaoEncontradaException.class)
+    private ResponseEntity<RestErrorMessage> handleTransacaoNaoEncontradaException(TransacaoNaoEncontradaException ex) {
+        RestErrorMessage errorMessage = new RestErrorMessage(ex.getMessage(), HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+
 }
