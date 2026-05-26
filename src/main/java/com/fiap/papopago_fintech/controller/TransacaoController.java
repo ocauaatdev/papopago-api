@@ -23,7 +23,7 @@ public class TransacaoController {
         return ResponseEntity.status(201).body(response);
     }
 
-    @GetMapping("/conta/{idConta}")
+    @GetMapping("/conta/{idUsuario}")
     public ResponseEntity<List<ResponseTransacaoDTO>> minhasTransacoes(@PathVariable Long idConta) {
         List<ResponseTransacaoDTO> transacoes = service.listarTransacoesPorConta(idConta);
         return ResponseEntity.status(200).body(transacoes);

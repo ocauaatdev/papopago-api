@@ -20,10 +20,13 @@ public record RequestTransacaoDTO(
         @NotBlank(message = "A origem da transação é obrigatória.")
         String origem,
 
-        @NotNull(message = "O ID da conta é obrigatório.")
-        Long idConta,
+        @NotNull(message = "O ID do usuário é obrigatório.")
+        Long idUsuario,
 
         @NotNull(message = "O ID da categoria é obrigatório.")
-        Long idCategoria
+        Long idCategoria,
+
+        @NotNull(message = "O ID da conta é obrigatório.")
+        Long idConta
 ) {
 }

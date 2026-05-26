@@ -3,6 +3,7 @@ package com.fiap.papopago_fintech.dto.transacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fiap.papopago_fintech.dto.categoria.ResponseCategoriaDTO;
 import com.fiap.papopago_fintech.dto.conta.ResponseContaDTO;
+import com.fiap.papopago_fintech.dto.usuario.ResponseUsuarioDTO;
 import com.fiap.papopago_fintech.entity.Transacao;
 
 import java.math.BigDecimal;
@@ -17,8 +18,9 @@ public record ResponseTransacaoDTO(
         LocalDate data,
 
         String origem,
-        ResponseContaDTO conta,
-        ResponseCategoriaDTO categoria
+        ResponseUsuarioDTO usuario,
+        ResponseCategoriaDTO categoria,
+        ResponseContaDTO conta
 ) {
     // Construtor que recebe a entidade Transacao e mapeia para o DTO
     public ResponseTransacaoDTO(Transacao transacao) {
@@ -28,9 +30,11 @@ public record ResponseTransacaoDTO(
                 transacao.getValor(),
                 transacao.getData(),
                 transacao.getOrigem(),
-                new ResponseContaDTO(transacao.getConta()),
-                new ResponseCategoriaDTO(transacao.getCategoria())
+                new ResponseUsuarioDTO(transacao.getUsuario()),
+                new ResponseCategoriaDTO(transacao.getCategoria()),
+                new ResponseContaDTO(transacao.getConta())
         );
     }
+
 
 }
